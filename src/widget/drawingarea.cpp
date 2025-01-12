@@ -206,7 +206,11 @@ void DrawingArea::loadElemVector(){
 //鼠标滚轮事件函数
 void DrawingArea::wheelEvent(QWheelEvent *event){
     // 当滚轮远离使用者时delta值为滚动的角度默认一下15°
+#if (QT_VERSION < QT_VERSION_CHECK(5,15,0))
     if(event->delta()>0){
+#else
+    if(event->angleDelta().y()>0){
+#endif
         zoomOut();
     }else{//当滚轮向使用者方向旋转时
         zoomIn();

@@ -21,7 +21,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //使用调色板设置背景颜色为深灰色(RGB(74,75,75)十进制)
     QPalette palette0=this->palette();
+#if QT_VERSION > QT_VERSION_CHECK(6, 0, 0)
+    palette0.setColor(QPalette::Window, QColor(74, 75, 75));
+#else
     palette0.setColor(QPalette::Background,QColor(74,75,75));
+#endif
     this->setPalette(palette0);
 
     //程序标题
